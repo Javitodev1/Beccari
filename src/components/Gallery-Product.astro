@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import product1 from "#/products/1.jpg";
+import product2 from "#/products/2.jpg";
+import product3 from "#/products/3.jpg";
+import product4 from "#/products/4.jpg";
+import product5 from "#/products/5.jpg";
+import product6 from "#/products/6.jpg";
+const products = [product5, product2, product4, product3, product1, product6];
+---
+
+<header>
+  <section class="mb-8">
+    <h2 class="text-burnt_sienna-100 text-center text-4xl font-semibold mb-4">
+      PRODUCTOS DESTACADOS
+    </h2>
+    <div class="flex justify-center">
+      <a
+        href="/products"
+        class="bg-burnt_sienna-100 hover:bg-burnt_sienna-400 text-white text-lg font-semibold px-4 py-2 mb-4 rounded-lg"
+        >Ver Todos Los Productos</a
+      >
+    </div>
+    <div class="px-12 grid auto-rows-[275px] grid-cols-3 gap-4">
+      {
+        [...Array(6)].map((_, i) => {
+          return (
+            <div
+              class:list={[
+                "row-span-1 rounded-xl border-2 border-french_gray-500 bg-french_gray-600 shadow-lg",
+                { "col-span-2": i === 3 || i === 5 },
+                { "row-span-2": i === 2 },
+              ]}
+            >
+              <Image
+                src={products[i]}
+                alt={`product id: ${i}`}
+                class="w-full h-full rounded-xl"
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+</header>
